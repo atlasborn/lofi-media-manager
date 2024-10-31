@@ -20,7 +20,7 @@
                 const videoList = document.getElementById('video-list');
                 videoList.innerHTML = ''; // Limpa a mensagem de carregamento
 
-                data.foreach(video => {
+                data.forEach(video => {
                     // Cria um elemento de vídeo para cada entrada no JSON
                     const videoItem = document.createElement('div');
                     videoItem.innerHTML = `
