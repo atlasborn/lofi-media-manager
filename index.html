@@ -3,11 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Galeria de Vídeos</title>
+    <title>Galeria de Vídeos e Áudios</title>
 </head>
 <body>
     <h1>Galeria de Vídeos</h1>
     <div id="video-list">Carregando vídeos...</div>
+
+    <h1>Galeria de Áudios</h1>
+    <div id="audio-list">Carregando áudios...</div>
 
     <script>
         // Busca o arquivo JSON e exibe os vídeos na página
@@ -31,6 +34,28 @@
                 });
             })
             .catch(error => console.error('Erro ao carregar os vídeos:', error));
+
+        // Busca o arquivo JSON e exibe os áudios na página
+        fetch('audios.json')
+            .then(response => response.json())
+            .then(data => {
+                const audioList = document.getElementById('audio-list');
+                audioList.innerHTML = ''; // Limpa a mensagem de carregamento
+
+                data.forEach(audio => {
+                    // Cria um elemento de áudio para cada entrada no JSON
+                    const audioItem = document.createElement('div');
+                    audioItem.innerHTML = `
+                        <h2>${audio.Title}</h2>
+                        <audio controls>
+                            <source src="${audio.url}" type="audio/mpeg">
+                            Seu navegador não suporta o elemento de áudio.
+                        </audio>
+                    `;
+                    audioList.appendChild(audioItem);
+                });
+            })
+            .catch(error => console.error('Erro ao carregar os áudios:', error));
     </script>
 </body>
 </html>
