@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeria de Vídeos</title>
+</head>
+<body>
+    <h1>Galeria de Vídeos</h1>
+    <div id="video-list">Carregando vídeos...</div>
+
+    <script>
+        // Busca o arquivo JSON e exibe os vídeos na página
+        fetch('videos.json')
+            .then(response => response.json())
+            .then(data => {
+                const videoList = document.getElementById('video-list');
+                videoList.innerHTML = ''; // Limpa a mensagem de carregamento
+
+                data.forEach(video => {
+                    // Cria um elemento de vídeo para cada entrada no JSON
+                    const videoItem = document.createElement('div');
+                    videoItem.innerHTML = `
+                        <h2>${video.title}</h2>
+                        <video width="320" height="240" controls>
+                            <source src="${video.url}" type="video/mp4">
+                            Seu navegador não suporta o elemento de vídeo.
+                        </video>
+                    `;
+                    videoList.appendChild(videoItem);
+                });
+            })
+            .catch(error => console.error('Erro ao carregar os vídeos:', error));
+    </script>
+</body>
+</html>
