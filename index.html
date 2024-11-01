@@ -68,19 +68,17 @@
                 thumbList.innerHTML = ''; // Limpa a mensagem de carregamento
 
                 data.forEach(thumb => {
-                    // Cria um elemento de áudio para cada entrada no JSON
+                    // Cria um elemento para cada entrada no JSON
                     const thumbItem = document.createElement('div');
                     thumbItem.innerHTML = `
                         <h2>${thumb.Title}</h2>
-                        <thumb controls>
-                            <source src="${thumb.url}" type="image/jpg">
-                            Seu navegador não suporta o elemento de áudio.
-                        </thumb>
+                        <img src="${thumb.url}" alt="${thumb.Title}" />
                     `;
                     thumbList.appendChild(thumbItem);
                 });
             })
-            .catch(error => console.error('Erro ao carregar os áudios:', error));
+            .catch(error => console.error('Erro ao carregar as Thumbs:', error));
+
     </script>
 </body>
 </html>
