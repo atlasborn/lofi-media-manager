@@ -12,6 +12,9 @@
     <h1>Galeria de Áudios</h1>
     <div id="audio-list">Carregando áudios...</div>
 
+    <h1>Galeria de Thumbs</h1>
+    <div id="thumb-list">Carregando Thumbs</div>
+
     <script>
         // Busca o arquivo JSON e exibe os vídeos na página
         fetch('videos.json')
@@ -42,6 +45,28 @@
                 const audioList = document.getElementById('audio-list');
                 audioList.innerHTML = ''; // Limpa a mensagem de carregamento
 
+                data.forEach(thumb => {
+                    // Cria um elemento de áudio para cada entrada no JSON
+                    const audioItem = document.createElement('div');
+                    audioItem.innerHTML = `
+                        <h2>${thumb.Title}</h2>
+                        <audio controls>
+                            <source src="${thumb.url}" type="image/jpg">
+                            Seu navegador não suporta o elemento de áudio.
+                        </audio>
+                    `;
+                    audioList.appendChild(audioItem);
+                });
+            })
+            .catch(error => console.error('Erro ao carregar os áudios:', error));
+
+            // Busca o arquivo JSON e exibe os áudios na página
+        fetch('thumbnails.json')
+            .then(response => response.json())
+            .then(data => {
+                const thumbList = document.getElementById('thumb-list');
+                thumbList.innerHTML = ''; // Limpa a mensagem de carregamento
+
                 data.forEach(audio => {
                     // Cria um elemento de áudio para cada entrada no JSON
                     const audioItem = document.createElement('div');
@@ -52,7 +77,7 @@
                             Seu navegador não suporta o elemento de áudio.
                         </audio>
                     `;
-                    audioList.appendChild(audioItem);
+                    thumbList.appendChild(audioItem);
                 });
             })
             .catch(error => console.error('Erro ao carregar os áudios:', error));
