@@ -45,13 +45,13 @@
                 const audioList = document.getElementById('audio-list');
                 audioList.innerHTML = ''; // Limpa a mensagem de carregamento
 
-                data.forEach(thumb => {
+                data.forEach(audio => {
                     // Cria um elemento de áudio para cada entrada no JSON
                     const audioItem = document.createElement('div');
                     audioItem.innerHTML = `
-                        <h2>${thumb.Title}</h2>
+                        <h2>${audio.Title}</h2>
                         <audio controls>
-                            <source src="${thumb.url}" type="image/jpg">
+                            <source src="${audio.url}" type="audio/mpeg">
                             Seu navegador não suporta o elemento de áudio.
                         </audio>
                     `;
@@ -69,15 +69,15 @@
 
                 data.forEach(audio => {
                     // Cria um elemento de áudio para cada entrada no JSON
-                    const audioItem = document.createElement('div');
-                    audioItem.innerHTML = `
-                        <h2>${audio.Title}</h2>
-                        <audio controls>
-                            <source src="${audio.url}" type="audio/mpeg">
+                    const thumbItem = document.createElement('div');
+                    thumbItem.innerHTML = `
+                        <h2>${thumb.Title}</h2>
+                        <thumb controls>
+                            <source src="${thumb.url}" type="thumb/mpeg">
                             Seu navegador não suporta o elemento de áudio.
-                        </audio>
+                        </thumb>
                     `;
-                    thumbList.appendChild(audioItem);
+                    thumbList.appendChild(thumbItem);
                 });
             })
             .catch(error => console.error('Erro ao carregar os áudios:', error));
